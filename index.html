@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Artisanal Coffee & Brews</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c8a47e;
+            --dark: #121212;
+            --light: #ffffff;
+            --glass: rgba(255, 255, 255, 0.1);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: transparent;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 10%;
+            border-bottom: 1px solid var(--glass);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--light);
+            font-weight: 400;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            color: #ccc;
+            opacity: 0;
+            animation: fadeInUp 1s 0.3s forwards;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--light);
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: var(--transition);
+            opacity: 0;
+            animation: fadeInUp 1s 0.6s forwards;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        /* --- Menu Section --- */
+        .section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--primary);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .menu-item {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.03);
+        }
+
+        .menu-item h3 {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .price {
+            color: var(--primary);
+        }
+
+        .menu-item p {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="#" class="logo">AURA</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <h1>Crafted with Passion</h1>
+        <p>Experience the finest artisanal coffee in a modern sanctuary designed for creators and dreamers.</p>
+        <a href="#menu" class="btn">View Menu</a>
+    </section>
+
+    <section class="section" id="menu">
+        <h2 class="section-title reveal">Signature Brews</h2>
+        <div class="menu-grid">
+            <div class="menu-item reveal">
+                <h3><span>Cold Brew Vanilla</span> <span class="price">$6.50</span></h3>
+                <p>12-hour steeped cold brew infused with organic Madagascar vanilla.</p>
+            </div>
+            <div class="menu-item reveal">
+                <h3><span>Oat Milk Latte</span> <span class="price">$5.00</span></h3>
+                <p>Double shot of espresso with silky smooth steamed oat milk.</p>
+            </div>
+            <div class="menu-item reveal">
+                <h3><span>Matcha Glow</span> <span class="price">$7.00</span></h3>
+                <p>Ceremonial grade matcha whisked with honey and almond milk.</p>
+            </div>
+            <div class="menu-item reveal">
+                <h3><span>Espresso Tonic</span> <span class="price">$5.50</span></h3>
+                <p>A refreshing twist with premium tonic water and citrus zest.</p>
+            </div>
+            <div class="menu-item reveal">
+                <h3><span>Charcoal Latte</span> <span class="price">$6.00</span></h3>
+                <p>Activated charcoal blended with steam milk and a hint of lavender.</p>
+            </div>
+            <div class="menu-item reveal">
+                <h3><span>Flat White</span> <span class="price">$4.50</span></h3>
+                <p>Micro-foam milk poured over a ristretto shot for the purists.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #1a1a1a;" id="about">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2 class="section-title reveal">Our Story</h2>
+            <p class="reveal">Born in the heart of the city, AURA is more than a café. It's a space where minimalist design meets the complex science of coffee roasting. We source our beans ethically from single-origin farms to ensure every cup tells a story.</p>
+        </div>
+    </section>
+
+    <footer style="padding: 40px; text-align: center; border-top: 1px solid var(--glass);">
+        <p>&copy; 2026 AURA COFFEE. Stay Caffeinated.</p>
+    </footer>
+
+    <script>
+        // Change Navbar Style on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Trigger once on load
+        revealOnScroll();
+    </script>
+
+    <script>
+    // 1. Disable Right-Click (Context Menu)
+    document.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+    });
+
+    // 2. Disable Key Combinations
+    document.addEventListener('keydown', (e) => {
+        // Disable F12 (DevTools)
+        if (e.key === "F12") {
+            e.preventDefault();
+        }
+
+        // Disable Ctrl + U (View Source)
+        if (e.ctrlKey && e.key === 'u') {
+            e.preventDefault();
+        }
+
+        // Disable Ctrl + Shift + I (Inspect Element)
+        if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+            e.preventDefault();
+        }
+
+        // Disable Ctrl + Shift + J (Console)
+        if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+            e.preventDefault();
+        }
+
+        // Disable Ctrl + Shift + C (Element Picker)
+        if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+            e.preventDefault();
+        }
+        
+        // Disable Ctrl + S (Save Page)
+        if (e.ctrlKey && e.key === 's') {
+            e.preventDefault();
+        }
+    });
+</script>
+</body>
+</html>
